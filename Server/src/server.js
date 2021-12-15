@@ -58,7 +58,7 @@ app.post('/sendOTP',(req,res)=>{
 
     client.messages.create({
         body:`Your One Time Login Password for CFM is ${otp}`,
-        from:+18048893104,
+        from:+12348039855,
         to:phone
     }).then((messages)=>console.log(messages)).catch((err)=>console.error(err))
 
