@@ -1,4 +1,10 @@
-body{
+/* body{
     background-color: rgb(18,19,23);
     
+} */
+.App{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
 }
