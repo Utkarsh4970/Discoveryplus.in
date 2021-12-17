@@ -8,7 +8,7 @@ const Footer = () => {
         <Footercss>
             <div id="footer" className="logos">
                 <div id="top_content" className="flex_wrapper">
-                    <div>
+                    <div className="top_left" >
                         <div className="flex_wrapper">
                             <img className="logos" src="mail.png" />
                             <p>hello@discovery.com</p>
@@ -22,8 +22,8 @@ const Footer = () => {
                             <p>Discovery India, 5th Floor, WeWork BKC, C20 G Block, Bandra Kurla Complex, Mumbai 400051</p>
                         </div>
                     </div>
-
-                        <div>
+                    <div  id="top_right" className="flex_wrapper">
+                        <div className = "right_content">
                             <p>Follow Us</p>
                             <div className="flex_wrapper">
                                 <img className="logos2" src="YOUTUBE.png" />
@@ -31,14 +31,14 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        <div>
+                        <div className = "right_content">
                             <p>discovery+ App</p>
                             <div className="flex_wrapper">
                                 <img className="logos2" src="Appstore.png" />
                                 <img className="logos2" src="Googleplay.png" />
                             </div>
                         </div>
-
+                    </div>
                 </div>
                 <div id="bottom_content">
                     <div>
