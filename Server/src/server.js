@@ -1,6 +1,8 @@
 const express = require("express")
 const connect = require("./config/db")
 
+const passport = require("./config/passport");
+
 //rewire for signup
 const { parse } = require("path");
 const crypto = require('crypto');
@@ -13,6 +15,42 @@ const app = express()
 const port = process.env.PORT || 3535;
 
 app.use(express.json())
+
+//google sigin
+
+app.use(passport.initialize());
+
+passport.serializeUser(function({user, token}, done) {
+
+    done(null, {user, token});
+});
+  
+passport.deserializeUser(function({user, token}, done) {
+
+    done(err, {user, token});
+});
+
+app.get("/auth/google/failure", (req,res)=>{
+    return res.send("somthing went wrong")
+})
+
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope:
+      [ 'email', 'profile' ] }
+));
+
+app.get( '/auth/google/callback',
+    passport.authenticate( 'google', {
+    
+        failureRedirect: '/auth/google/failure'
+
+    }), function(req,res){
+
+       const {user,token} = req.user
+        return res.status(200).json({user,token});
+    }
+);
 //controllers
 const BestController = require("./controllers/BestController")
 const FavhindiController = require("./controllers/FavhindiController")
@@ -39,7 +77,7 @@ const smsKey = process.env.SMS_SECRET_KEY;
 const client = require('twilio')(accountSid,authToken);
 
 //const JWT_AUTH_TOKEN = process.env.JWT_AUTH_TOKEN;
-//const JWT_REFRESH_TOKEN = process.env.JWT_REFRESH_TOKEN;
+
 const cors = require('cors');
 
 //let refreshTokens = [];
@@ -60,7 +98,7 @@ app.post('/sendOTP',(req,res)=>{
         body:`Your One Time Password (OTP) for Sign-In is ${otp}`,
         from:+12348039855,
         to:phone
-    }).then((messages)=>console.log(messages)).catch((err)=>console.error(err))
+    }).then((messages)=>console.log(`OTP has been sent on mobile number${phone}`)).catch((err)=>console.error(err))
 
      res.status(200).send({phone,hash:fullhash,otp})
 })
@@ -84,96 +122,14 @@ app.post("/verifyOTP", (req,res)=>{
     const newCalculatedHash = crypto.createHmac('sha256',smsKey).update(data).digest('hex')
     
     if(newCalculatedHash === hashValue){
-        //return res.status(202).send({msg:"user confirmed"})
-        
-       // const acccessToken = jwt.sign({data:phone},JWT_AUTH_TOKEN,{expiresIn: '30s'});
-       // const refreshToken = jwt.sign({data:phone},JWT_REFRESH_TOKEN,{expiresIn: '1y'});
-       // refreshTokens.push(refreshToken);
+       
 
-        res.status(202).
-        // cookie('accessToken',acccessToken,{
-        //     expires:new Date(new Date().getTime()+ 30*1000),
-        //     sameSite:'strict',
-        //     httpOnly:true
-        // })
-        // .cookie('refreshToken',refreshToken,{
-        //     expires:new Date(new Date().getTime()+ 31557600000),
-        //     sameSite:'strict',
-        //     httpOnly:true
-        // })
-        // .cookie('authSession',true,{
-        //     expires:new Date(new Date().getTime()+ 30*1000),
-        //     sameSite: 'strict'
-        // })
-        // .cookie('refreshTokenID',true,{
-        //     expires:new Date(new Date().getTime()+ 3557600000),
-        //     sameSite: 'strict'
-        // }).
-        send({msg:`Device Verified`})
+        res.status(202).send({msg:`Device Verified`})
 
     }else{
         return res.status(400).send({verification:false,msg:"Incorrect OTP"})
     }
 })
-
-/************************ Authenticate User ****************/
-
-// async function authenticateUser(req,res,next){
-//     const accessToken = req.cookies.accessToken;
-
-//     jwt.verify(accessToken,JWT_AUTH_TOKEN,async(err,phone)=>{
-//         if(phone){
-//             req.phone = phone;
-//             next();
-
-//         }else if(err.message === 'TokenExpiredError'){
-//             return res.status(403).send({success:false,msg:`Access Token Expired`})
-//         }else{
-//             console.error(err)
-//             res.status(403).send({err,msg:"User Not Authenticated"})
-//         }
-//     })
-// }
-// /********************* Refresh  ****************/
-
-// app.post("/refresh",(req,res)=>{
-//     const refreshToken = req.cookies.refreshToken;
-
-//     if(!refreshToken) return res.status(403).send({msg:"Refresh Token not found, Please login again"});
-
-//     if(!refreshTokens.includes(refreshToken)) return res.status(403).send({msg:"Refresh Token blocked, login again"})
-
-//     jwt.verify(refreshToken,JWT_REFRESH_TOKEN,(err,phone)=>{
-//         if(!err){
-//             const acccessToken = jwt.sign({data:phone},JWT_AUTH_TOKEN,{expiresIn: '30s'});
-
-//             res.status(200).
-//             cookie('accessToken',acccessToken,{
-//                 expires:new Date(new Date().getTime()+ 30*1000),
-//                 sameSite:'strict',
-//                 httpOnly:true
-//             })
-//             .cookie('authSession',true,{
-//                 expires:new Date(new Date().getTime()+ 30*1000),
-//                 sameSite:'strict',
-
-//             }).send({previousSessionExpiry:true, success:true})
-//         }else{
-//             return res.status(403).send({success:false, msg:"Invalid refresh token"})
-//         }
-//     })
-    
-// })
-// /*************************** logout  ****************/
-// app.get("/logout", (req,res)=>{
-//     res.clearCookie('refreshToken')
-//     .clearCookie('.accessToken')
-//     .clearCookie('authSession')
-//     .clearCookie('refreshTokenID')
-//     .send('user Logged Out')
-// })
-
-
 
 app.listen(port, async () => {
 
