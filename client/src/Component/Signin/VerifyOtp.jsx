@@ -5,7 +5,7 @@ import { ValidateMobile } from "../common/ValidMobile"
 import { Button } from "../common/Button"
 import "./verifyOtp.css"
 import { useContext } from "react"
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import axios from "axios"
 import { Redirect } from "react-router"
 export const VerifyOtp = ()=>{
@@ -19,11 +19,11 @@ export const VerifyOtp = ()=>{
 
     const resend = ()=>{
 
-        axios.post("http://localhost:3001/sendOTP",{
+        axios.post("http://localhost:3535/sendOTP",{
         phone:`+91${state.phone}`,
 
       }).then((res)=>{
-        //console.log(res.data);
+        console.log(res.data);
         
         const hash = res.data.hash;
         handleHash(hash);
@@ -33,7 +33,7 @@ export const VerifyOtp = ()=>{
     }
 
     const submitOtp = ()=>{
-        axios.post("http://localhost:3001/verifyOTP",{
+        axios.post("http://localhost:3535/verifyOTP",{
             phone:`+91${state.phone}`,
             hash:`${state.hash}`,
             otp:`${state.otp}`

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Button } from "../common/Button";
 import { ValidateMobile } from "../common/ValidMobile";
 import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import axios from 'axios'
 import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
@@ -21,7 +21,7 @@ export const Sighin = ()=>{
     const handleSubmit = (e)=>{
         e.preventDefault();
 
-        axios.post("http://localhost:3001/sendOTP",{
+        axios.post("http://localhost:3535/sendOTP",{
         phone:`+91${state.phone}`,
 
       }).then((res)=>{

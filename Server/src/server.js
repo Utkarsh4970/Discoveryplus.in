@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 //
 const app = express()
+app.use(express.json())
 const port = process.env.PORT || 3535;
 ///code for siginin
 const accountSid = process.env.ACCOUNT_SID;
@@ -22,6 +23,7 @@ app.use(cors({origin:'http://localhost:3000',credentials:true}))
 /******************* Send OTP **************/
 app.post('/sendOTP',(req,res)=>{
     const phone = req.body.phone;
+    console.log(phone)
     const otp = Math.floor(100000+ Math.random()*900000);
     const ttl = 2*60*1000;
     const expires = Date.now() +ttl;
@@ -53,7 +55,7 @@ app.post("/verifyOTP", (req,res)=>{
         return res.status(400).send({verification:false,msg:"Incorrect OTP"})
     }
 })
-app.use(express.json())
+
 //controllers
 const BestController = require("./controllers/BestController")
 const FavhindiController = require("./controllers/FavhindiController")

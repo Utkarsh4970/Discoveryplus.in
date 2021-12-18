@@ -4,8 +4,16 @@ import img from '../Img/Rectangle 4.png'
 import search from '../Img/search.png'
 import { Link } from 'react-router-dom'
 import Db from '../../../Utils/request'
+import { useContext } from "react"
+import { AuthContext } from "../../context/AuthContext"
 import { useState, useCallback } from 'react'
 function Navbar() {
+  //signin
+  const {token, handleLogout, otpSend} = useContext(AuthContext);
+  const handleClick = ()=>{
+      handleLogout()
+  }
+  //
   const [showlove, setShowlove] = useState([]);
   const handlechange = async (event) => {
     const value = event.target.value;
@@ -132,7 +140,11 @@ function Navbar() {
           <div>
             <ul className="navbar-nav">
               <li className="nav-item px-3">
-                <button className='btn-primary px-2' style={{ borderRadius: "5px" }}>Sign In</button>
+              {
+                !otpSend?<Link to="/signin" > <button className='btn-primary px-2' style={{ borderRadius: "5px" }}>Sign In</button></Link>: <button className='btn-primary px-2' style={{ borderRadius: "5px" }} onClick={handleClick}>My Account</button>
+
+            }
+               
               </li>
             </ul>
           </div>

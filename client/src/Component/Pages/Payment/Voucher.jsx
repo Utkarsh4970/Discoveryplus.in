@@ -28,16 +28,16 @@ function Voucher() {
     }
     return (
         <Toolbar>
-            <div className='wrapper-logo'>
-                <img src="	https://auth.discoveryplus.in/logo_premium-61813cd4f11189a69d83f7afb3699d19.png" alt="" />
+           <div className='wrapper-logo'>
+                <img className='p-3' src="https://auth.discoveryplus.in/logo_premium-61813cd4f11189a69d83f7afb3699d19.png" alt="" style={{ height: "80px", width: "350px" }}/>
             </div>
             <Wrapper>
-                <div className='ccard card3'>
-                    <div className='logo' style={{ textAlign: "center" }}>
-                        <img src="https://www.discoveryplus.in/129c5de772422db12a69e397768bd8ec.png" alt="" />
-                    </div>
+                <div className="card m-auto mt-4 p-4" style={{ maxWidth: "750px", background: " #1A1C21", borderRadius: "15px"}}>
+                    <img src="https://www.discoveryplus.in/129c5de772422db12a69e397768bd8ec.png" className="card-img-top m-auto p-3" alt="..." style={{height:"80px",width:"250px"}}/>
                     <div className='line'></div>
-                    <div className='item2'>
+                   
+                    <div className="card-body row">
+                    <div className='col-12 col-sm-8 p-2'>
                         <p className='method methods2'>Redeem Voucher</p>
                         <input className='voucherInput' onChange={(e) => { handleVoucher(e) }} type="text" placeholder='Enter Voucher Code' />
                         <Link className='navlinkstyle' to={{
@@ -47,9 +47,9 @@ function Voucher() {
 
                     </div>
 
-                    <div className="item3">
+                    <div className="col-12 col-sm-4 p-2">
                         <p className='method'>Selected Plans</p>
-                        <div className='pricediv'>
+                        <div className='pricediv'style={{maxWidth:"100%"}}>
                             <p className='price'>399</p>
                             <div className='rupees'>
                                 <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,6 +65,8 @@ function Voucher() {
                             <p className='method change'>Change</p>
                         </div>
                     </div>
+                    </div>
+                   
                 </div>
 
             </Wrapper>

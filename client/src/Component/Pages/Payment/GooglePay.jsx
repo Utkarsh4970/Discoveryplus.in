@@ -1,6 +1,15 @@
 import React from 'react'
 import GooglePayButton from '@google-pay/button-react'
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import { Redirect } from 'react-router-dom';
+
 function GooglePay() {
+  const { handleprime,Primemember}= useContext(AuthContext)
+  if(Primemember){
+    return  <Redirect to="/"></Redirect>
+  }
+  console.log(Primemember);
     return (
         <div>
            <GooglePayButton className='googlePayButton'
@@ -39,7 +48,11 @@ function GooglePay() {
     },
   }}
   onLoadPaymentData={paymentRequest => {
-    console.log('load payment data', paymentRequest);
+    // console.log('load payment data', paymentRequest.paymentMethodData.tokenizationData.token);
+    if(paymentRequest.paymentMethodData.tokenizationData.token.length>0){
+      handleprime()
+    
+    }
   }}
 />
         </div>

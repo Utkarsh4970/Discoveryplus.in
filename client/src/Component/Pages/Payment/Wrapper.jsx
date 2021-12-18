@@ -8,7 +8,7 @@ background-size: cover;
 
 background-repeat: no-repeat;
 position: fixed;
-overflow: auto;
+overflow:scroll;
 `
 export const Wrapper = ({children})=>{
 return (

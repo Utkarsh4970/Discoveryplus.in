@@ -48,7 +48,7 @@ export const Toolbar = styled.header`
     .item2{
         margin-left: 40px;
         margin-top: 10px;
-        width: 60%;
+       
         height: 66%;
         float: left;
     }
@@ -215,13 +215,8 @@ export const Toolbar = styled.header`
         height: 35px;
     }
     .methods2{
-        margin-left: -1px;
-        /* margin-top: -3px; */
-        color: rgb(219, 207, 207);
-    }
-    .methods2{
         /* margin-top: 3px; */
-        color: rgb(219, 207, 207);
+        color: rgb(117, 116, 116);
     }
     .item3selected{
         height: 300px;
@@ -230,11 +225,10 @@ export const Toolbar = styled.header`
         margin-top: 120px;
     }
     .methods3{
-        color: rgb(117, 116, 116);
+        color: rgb(255, 255, 255);
+       
     }
     .methods5{
-        font-size: 17px;
-    }
     .navlinkstyle{
         border: none;
         outline: none;
@@ -254,9 +248,9 @@ export const Toolbar = styled.header`
     .methodp{
         margin-top: -20px;
     }
-    .methodp2{
+    /* .methodp2{
         margin-top: 0px !important;
-    }
+    } */
     .backgroundwrapper{
         /* background-image: linear-gradient(to bottom, rgba(40,44,51,0), rgba(40,44,51,0) 44%, #292C34); */
     }

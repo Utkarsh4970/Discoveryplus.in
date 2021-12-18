@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 export const AuthContextProvider = ({children}) =>{
     const [token,setToken] = useState("");
     const [otpSend, setOtpSend] = useState(false);
+    const [Primemember, setPrimeMember] = useState(false);
   
 
     const handleLogout = ()=>{
@@ -35,13 +36,17 @@ export const AuthContextProvider = ({children}) =>{
             hash:"",
             otp:""
       })
+     
         
+    }
+    const handleprime=()=>{
+      setPrimeMember(true)
     }
     
       //const {phone,hash,otp} = state;
       //const value = {phone,hash,otp}
     return (
-        <AuthContext.Provider value = {{token,handleToken,handleLogout,state,otpSend,handleState,handleHash}}>
+        <AuthContext.Provider value = {{token,handleToken,handleLogout,state,otpSend,handleState,handleHash,Primemember, handleprime}}>
             {children}
         </AuthContext.Provider>
     )
