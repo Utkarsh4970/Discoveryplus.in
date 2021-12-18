@@ -3,11 +3,13 @@
 import Navbar from './Collection/Navbar/Navbar';
 import './App.css';
 import { Footer } from './Collection/Footer/Footer';
+import { Primium } from './Collection/Primium/Primium';
 function App() {
 
   return (
     <div className="App">
       <Navbar />
+      <Primium />
       <Footer/>
 
       {/* <div style={{maxWidth: "300px", padding: "15px"}}>
