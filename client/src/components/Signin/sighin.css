@@ -1,0 +1,72 @@
+.sighin-page{
+    height: 100%;
+}
+.signin-page-cont-title{
+    font-size: 1.37rem;
+}
+.sign-page-container__description{
+    font-weight: 300;
+    font-size: 14px;
+    color: #c7c7c7;
+    margin-top: 10px;
+    margin-bottom: 19px;
+    line-height: 1.5;
+}
+.input-box-cont{
+    margin-bottom: 19px;
+}
+.mobile-input-box{
+    text-align: center;
+    background-color: transparent;;
+    border: none;
+    outline: none;
+    color: #f8f8f9;
+    padding:0 0 12px;
+}
+.signin-page-container__or{
+    text-transform: uppercase;
+    color: #c7c7c7;
+    margin: 20px 0 25px;
+    font-weight: 300;
+    font-size: 14px;
+}
+.signin-page-container__link{
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #2789ff;
+    text-decoration: none;
+    padding: 10px 0;
+}
+.signin-page-container__link:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.signin-page-container__terms-and-conditions{
+    margin-top: 30px;
+    width: 100%;
+    color: #c7c7c7;
+    line-height: 1.5;
+    font-size: 13px;
+}
+.signin-page-container__terms-and-conditions a{
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 500;
+    
+    padding: 3px 0;
+}
+.signin-page-container__terms-and-conditions a:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.error-text{
+    font-size: 13px;
+    font-style: italic;
+    background-color: transparent;
+    border-top: 1px solid;
+    border-color: grey;
+    color: #ff4040;
+    padding: 5px 0;
+}

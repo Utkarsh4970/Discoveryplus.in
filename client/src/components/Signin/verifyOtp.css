@@ -1,0 +1,14 @@
+.resendotp-link{
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    color: rgb(39, 137, 255);
+    text-decoration: none;
+    margin-top: 30px;
+}
+.resendotp-link:hover{
+    text-decoration: underline;
+}
+.sub-btn-otp{
+    margin-top: 30px;
+}

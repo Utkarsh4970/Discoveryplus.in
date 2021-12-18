@@ -1,5 +1,13 @@
 
 import './App.css';
+
+import { Sighin } from './components/Signin/Sighin';
+import { SignOther } from './components/Signin/SignOther';
+import { VerifyOtp } from './components/Signin/VerifyOtp';
+import {Switch, Route, Redirect} from 'react-router-dom'
+import { useContext } from 'react';
+import { AuthContext } from './context/AuthContext';
+
 import Carosule from './Component/Pages/Home/Carosule';
 import Navbar from './Component/Pages/Navbar/Navbar';
 import Slider from './Component/Pages/Home/Slider';
@@ -22,6 +30,16 @@ import CreaditCard from './Component/Pages/Payment/CreaditCard';
 import { PaymentMethod } from './Component/Pages/Payment/PaymentMethod';
 
 function App() {
+  const {token, handleToken, handleLogout, otpSend} = useContext(AuthContext);
+
+  const handleSignIN = ()=>{
+    const newtoken = Date.now();
+    handleToken(newtoken);
+    
+}
+const handleSignOut = ()=>{
+
+  handleLogout();
   return (
     <div className="App fluid-container pb-0">
 
@@ -65,10 +83,19 @@ function App() {
         </Route>
         <Route path='/payment/card' >
           <CreaditCard/>
+    <Route path="/signin">
+          <Sighin />
+        </Route>
+        <Route path="/verifyOtp">
+          <VerifyOtp />
+        </Route>
+        <Route path="/signinOther">
+          <SignOther />
         </Route>
       </Switch>
 
     </div >
+
   );
 }
 
