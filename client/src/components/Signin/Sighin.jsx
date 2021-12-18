@@ -4,25 +4,34 @@ import './sighin.css'
 import { useState } from "react";
 import { Button } from "../common/Button";
 import { ValidateMobile } from "../common/ValidMobile";
-
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import axios from 'axios'
+import { Redirect } from "react-router";
+import { Link } from "react-router-dom";
 export const Sighin = ()=>{
 
-    const [user,setUser] = useState({
-        mobileNumber:""
-    });
-   
+    const {state,handleState,handleHash,otpSend} = useContext(AuthContext);
+
     const handleChange = (e)=>{    // handle thie input box
         const {name,value} = e.target;
-        setUser({...user,
-        [name]:value
-        })
+        handleState({name,value})
     }
 
     const handleSubmit = (e)=>{
         e.preventDefault();
-        console.log(user.mobileNumber)
+
+        axios.post("http://localhost:3001/sendOTP",{
+        phone:`+91${state.phone}`,
+
+      }).then((res)=>{
+        console.log(res.data);
+        
+        const hash = res.data.hash;
+        handleHash(hash);
+      })
     }
-    return <div className="sighin-page">
+    return !otpSend?<div className="sighin-page">
             <Wrapper>
                 <Card>
                     <h2 className="signin-page-cont-title">Sign In Now</h2>
@@ -30,15 +39,15 @@ export const Sighin = ()=>{
                     <form>
                         <div className="input-box-cont">
                             
-                            <input type="tel" id="mobileNumber" className="mobile-input-box" placeholder="Mobile Number" name="mobileNumber" maxLength="10" onChange={(e)=>handleChange(e)} value={user.mobileNumber}></input>
-                            <ValidateMobile isError={(user.mobileNumber.length>0 && user.mobileNumber.length<10)?"true":"false"}><span>Please enter a valid 10 digit mobile number</span></ValidateMobile>
+                            <input type="tel" id="mobileNumber" className="mobile-input-box" placeholder="Mobile Number" name="phone" maxLength="10" onChange={handleState('phone')} value={state.phone}></input>
+                            <ValidateMobile isError={(state.phone.length>0 && state.phone.length<10)?"true":"false"}><span>Please enter a valid 10 digit mobile number</span></ValidateMobile>
                         </div>
                         <div>
-                            <Button onClick={(e)=>handleSubmit(e)} disabled={user.mobileNumber.length<10?true:false} theme={user.mobileNumber.length===10?"ligth":"dark"} >Get OTP</Button>
+                            <Button onClick={(e)=>handleSubmit(e)} disabled={state.phone.length<10?true:false} theme={state.phone.length===10?"ligth":"dark"} >Get OTP</Button>
                         </div>
                     </form>
                     <p className="signin-page-container__or">or</p>
-                    <a className="signin-page-container__link" href="#">View other sign in options</a>
+                    <Link className="signin-page-container__link" to="/signinOther">View other sign in options</Link>
                     <p className="signin-page-container__terms-and-conditions">
                         <span>By signing in, you agree to our <a href="#">Privacy Policy</a> &amp; <a href="#">Terms of Use</a>
                         </span>
@@ -46,5 +55,5 @@ export const Sighin = ()=>{
                 </Card>
 
             </Wrapper>
-        </div>
+        </div>:<Redirect to="/verifyOtp" />
 }
