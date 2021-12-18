@@ -1,0 +1,98 @@
+import React from 'react'
+import {Toolbar} from './Payment'
+import Button from '@mui/material/Button'
+import SelectedPlan from './SelectedPlan'
+import { Wrapper } from './Wrapper';
+function CreaditCard() {
+    const [disable, setDisable] = React.useState(false)
+    const handleVoucher = () => {
+        setDisable(false)
+    }
+    return (
+        <Toolbar>
+            <div className='wrapper-logo'>
+                <img src="	https://auth.discoveryplus.in/logo_premium-61813cd4f11189a69d83f7afb3699d19.png" alt=""  />
+            </div>
+            <Wrapper>
+                <div className='ccard card4'>
+                    <div className='logo' style={{ textAlign: "center" }}>
+                        <img src="https://www.discoveryplus.in/129c5de772422db12a69e397768bd8ec.png" alt="" />
+                    </div>
+                    <div className='line'></div>
+                    <div className='item2'>
+                        <form action="">
+                            <p className='method methods2'>Checkout</p>
+                            <p className='methods2'>CARD NUMBER</p>
+                            <input className='voucherInput voucherInput2' name="cardNumber" type="text" placeholder='1234 5678 9012 3456' />
+                            <p className='methods2'>EXPIRY DATE</p>
+                            <input className='voucherInput voucherInput2' name="expiry" type="text" placeholder='MM/YY' />
+                            <p className='methods2'>CVC/CVV</p>
+                            <input className='voucherInput voucherInput2' name="cvv" type="text" placeholder='123' />
+                            <p className='methods2'>CARD HOLDER NAME</p>
+                            <input className='voucherInput voucherInput2' name="cardholdername" type="text" placeholder='J. Smith' />
+                        </form>
+                        <Button className="marlef" style={{ marginTop: 18, width: "96%", marginBottom: 20 }} disabled={disable} className='proceedToUpi' variant="contained">Continue</Button>
+
+                    </div>
+
+                    <div className="item3 item3selected">
+                        <SelectedPlan />
+                    </div>
+
+
+                </div>
+                <div className='ccard card5'>
+                    <div>
+                        <br />
+                        <p style={{ marginTop: -5, marginLeft: 35 }}>
+                            <svg id="protectsvg" width={30}
+
+                                height={30}
+                                version="1.1"
+                                id="Layer_1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlnsXlink="http://www.w3.org/1999/xlink"
+                                x="0px"
+                                y="0px"
+                                viewBox="0 0 111.81 122.88"
+                                style={{ enableBackground: "new 0 0 111.81 122.88" }}
+                                xmlSpace="preserve"
+                            >
+                                <style
+                                    type="text/css"
+                                    dangerouslySetInnerHTML={{
+                                        __html:
+                                            "\n\t.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#51B53C;}\n\t.st1{fill:#FFFFFF;}\n\t.st2{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}\n"
+                                    }}
+                                />
+                                <g>
+                                    <path
+                                        className="st0"
+                                        d="M55.71,0c20.85,13.21,39.68,19.47,55.85,17.99c2.82,57.1-18.26,90.82-55.63,104.89 C19.84,109.71-1.5,77.44,0.08,17.12C19.06,18.12,37.67,14.01,55.71,0L55.71,0L55.71,0z"
+                                    />
+                                    <path
+                                        className="st2"
+                                        d="M55.73,7.05c18.45,11.7,35.13,17.23,49.43,15.92c2.5,50.54-16.17,80.39-49.24,92.85 C23.98,104.16,5.09,75.6,6.49,22.21C23.29,23.09,39.77,19.46,55.73,7.05L55.73,7.05L55.73,7.05z"
+                                    />
+                                    <path
+                                        className="st0"
+                                        d="M56.24,19.54c14.22,9.01,27.06,13.27,38.08,12.27c1.92,38.94-12.45,61.93-37.94,71.53 c-0.16-0.06-0.32-0.12-0.48-0.18c-0.16,0.06-0.32,0.12-0.48,0.18c-25.48-9.6-39.86-32.59-37.94-71.53 c11.02,1.01,23.87-3.26,38.08-12.27l0,0l0.33,0.25L56.24,19.54L56.24,19.54L56.24,19.54z"
+                                    />
+                                    <path
+                                        className="st1"
+                                        d="M35.44,58.28l7.47-0.1l0.56,0.14c1.51,0.87,2.93,1.86,4.26,2.99c0.96,0.81,1.87,1.69,2.74,2.65 c2.68-4.31,5.54-8.28,8.56-11.92c3.31-3.99,5.38-6.18,9.06-9.49l0.73-0.28h8.16l-1.65,1.82c-5.05,5.61-8.21,9.99-12.35,15.97 c-4.15,6-7.85,12.18-11.15,18.54l-1.03,1.98l-0.94-2.02c-1.74-3.73-3.82-7.15-6.3-10.21c-2.48-3.06-5.37-5.78-8.74-8.09 L35.44,58.28L35.44,58.28L35.44,58.28L35.44,58.28z"
+                                    />
+                                </g>
+                            </svg>
+
+                        </p>
+                        <p className='methods2 methods3' style={{ marginTop: -50, marginLeft: 70 }}>your card details will be encrypted before processed through a secure server.</p>
+                        <p className='methods2 methods5' style={{ marginLeft: 40 }}>By chosing to proceed, you authorise us to charge your card until you cancel. For any queries,<br /> you can reach out to us at <span style={{ color: "#1389ff" }}>hello@discovery.com</span></p>
+                    </div>
+                </div>
+            </Wrapper>
+        </Toolbar>
+    )
+}
+
+export default CreaditCard

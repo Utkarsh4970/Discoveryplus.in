@@ -18,6 +18,10 @@ router.get("", async (req, res) => {
 
     return res.status(200).send({ showlove })
 })
+router.get("/:id", async (req, res) => {
+    const showlove = await Showlove.find({$text:{$search: req.params.id}}).lean().exec()
+    return res.status(200).send({ showlove })
+})
 
 
 //patch requests
