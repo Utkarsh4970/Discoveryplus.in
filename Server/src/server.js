@@ -34,7 +34,11 @@ app.post('/sendOTP',(req,res)=>{
         body:`Your One Time Password (OTP) for Sign-In is ${otp}`,
         from:+12348039855,
         to:phone
-    }).then((messages)=>console.log(messages)).catch((err)=>console.error(err))
+    }).then((messages)=>
+    messages
+    )
+    .catch((err)=>
+   err)
      res.status(200).send({phone,hash:fullhash,otp})
 })
 /************************* Verify router ******************/
@@ -65,6 +69,8 @@ const FreestreamController = require("./controllers/FreestreamController")
 const IndioriginController =require("./controllers/IndiaoriginController")
 const SuperstarController =require("./controllers/SuperstarController")
 const newlyaddedController =require("./controllers/NewlyaddedController")
+const UserController =require("./controllers/UserController")
+app.use("/user", UserController )
 app.use("/Superstar", SuperstarController )
 app.use("/Newlyadded", newlyaddedController )
 app.use("/Favtamil", FavtamilController)

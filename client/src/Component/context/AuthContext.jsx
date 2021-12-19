@@ -1,12 +1,12 @@
 import { createContext, useState } from "react";
-
+import Dbdata from '../../Utils/request'
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({children}) =>{
     const [token,setToken] = useState("");
     const [otpSend, setOtpSend] = useState(false);
     const [Primemember, setPrimeMember] = useState(false);
-  
+    const [showdata,setshowData] = useState("");
 
     const handleLogout = ()=>{
         setToken("")
@@ -39,14 +39,24 @@ export const AuthContextProvider = ({children}) =>{
      
         
     }
-    const handleprime=()=>{
+    const handleprime=async()=>{
       setPrimeMember(true)
-    }
     
+      await Dbdata.post("/user", {
+        user:localStorage.getItem("mob")||localStorage.getItem("email"),
+        prime_status:true
+       
+      })
+      
+    }
+    const handlemail = ()=>{
+      setOtpSend(true);
+    }
+    console.log(showdata);
       //const {phone,hash,otp} = state;
       //const value = {phone,hash,otp}
     return (
-        <AuthContext.Provider value = {{token,handleToken,handleLogout,state,otpSend,handleState,handleHash,Primemember, handleprime}}>
+        <AuthContext.Provider value = {{token,handleToken,handleLogout,state,otpSend,handleState,handleHash,Primemember, handleprime,handlemail,showdata,setshowData}}>
             {children}
         </AuthContext.Provider>
     )

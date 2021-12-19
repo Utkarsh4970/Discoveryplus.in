@@ -9,6 +9,7 @@ import { AuthContext } from "../context/AuthContext";
 import axios from 'axios'
 import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
+import Dbdata from '../../Utils/request'
 export const Sighin = ()=>{
 
     const {state,handleState,handleHash,otpSend} = useContext(AuthContext);
@@ -21,15 +22,19 @@ export const Sighin = ()=>{
     const handleSubmit = (e)=>{
         e.preventDefault();
 
-        axios.post("http://localhost:3535/sendOTP",{
+       Dbdata.post("/sendOTP",{
         phone:`+91${state.phone}`,
+       
 
       }).then((res)=>{
         console.log(res.data);
-        
+        alert(res.data.otp)
+        localStorage.setItem("mob",state.phone)
         const hash = res.data.hash;
         handleHash(hash);
+      
       })
+    
     }
     return !otpSend?<div className="sighin-page">
             <Wrapper>

@@ -2,7 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import play from '../Img/play.png'
 import { Link } from 'react-router-dom'
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { useState, useEffect } from 'react';
+import Dbdata from '../../../Utils/request'
 const Toolbar = styled.header`
+
   .dot{
     max-width:10px;
     height:10px;
@@ -33,6 +38,24 @@ const Toolbar = styled.header`
   }
 `
 function Carosule() {
+  const { handlemail, otpSend, setshowData } = useContext(AuthContext);
+
+  if (localStorage.getItem("email") != "" || localStorage.getItem("mob") != "") {
+    handlemail();
+  }
+  const [slider, setSlider] = useState([]);
+  const getshowdata = async () => {
+    await Dbdata.get("showlove")
+      .then(({ data }) => {
+        setSlider(data.showlove)
+        return;
+      })
+
+  }
+
+  useEffect(() => {
+    getshowdata()
+  }, [])
   return (
     <Toolbar>
       <div style={{ backgroundColor: "rgb(18,19,23)", padding: "4%", paddingTop: "0px", paddingBottom: "0px" }}>
@@ -41,36 +64,27 @@ function Carosule() {
             <div className="carousel-item active">
               <div className="row">
                 <div className="col-4">
-                  <h1 className='non mt-3 text-white'  ><strong>{slider[0].title}</strong></h1>
-                  <p className="non card-text mb-0 py-1" style={{ color: "#838991", fontSize: "18px" }}>{slider[0].text}</p>
+                  <h1 className='non mt-3 text-white'  ><strong>{slider[0]?.title}</strong></h1>
+                  <p className="non card-text mb-0 py-1" style={{ color: "#838991", fontSize: "18px" }}>{slider[0]?.description}</p>
                   <div className="non btn-group mt-3" role="group" aria-label="Basic example">
                     <button type="button" className="btn btn-secondary py-0 mx-1" style={{ backgroundColor: "rgb(40,46,61)", color: "#b6bbc0", fontSize: "12px" }}>Trending</button>
                     <button type="button" className="btn btn-secondary py-0 mx-1" style={{ backgroundColor: "rgb(40,46,61)", color: "#b6bbc0", fontSize: "12px" }}>Recommanded</button>
                   </div>
-                  <Link style={{ textDecoration: "none" }} to={
-                    {
-                      pathname: "/swatch",
-                      state: {
-                        Data: slider[0],
-                      },
-                    }
-                  }>
+                  <Link to="/watch" style={{textDecoration:"none"}}>
+
                     <div className='pt-4'>
 
-                      <img className='play' src={play} alt="" style={{ maxWidth: "65px", maxHeight: "65px" }} /><span className='px-3' style={{ color: "#ffffff", fontSize: "18px" }}>Play</span>
-
+                      <img className='play' src={play} alt="" style={{ maxWidth: "65px", maxHeight: "65px" }} /><span className='px-3' style={{ color: "#ffffff", fontSize: "18px" }}
+                        onClick={() => {
+                          setshowData({ ...slider[0] })
+                        }}>Play</span>
                     </div> </Link>
                 </div>
                 <div className="col-12 col-lg-8">
-                  <Link style={{ textDecoration: "none" }} to={
-                    {
-                      pathname: "/swatch",
-                      state: {
-                        Data: slider[0],
-                      },
-                    }
-                  }>
-                    <img style={{ borderRadius: "10px" }} src={slider[0].img} className="d-block w-100" alt="..." />
+                <Link to="/watch" style={{textDecoration:"none"}}>
+                    <img style={{ borderRadius: "10px" }} src={slider[0]?.image_url} className="d-block w-100" alt="..."  onClick={() => {
+                          setshowData({ ...slider[0] })
+                        }}/>
                   </Link>
                 </div>
               </div>
@@ -78,36 +92,27 @@ function Carosule() {
             <div className="carousel-item">
               <div className="row">
                 <div className="col-4">
-                  <h1 className='non mt-3 text-white'> <strong>{slider[1].title}</strong></h1>
-                  <p className="non card-text mb-0 py-1" style={{ color: "#838991", fontSize: "18px" }}>{slider[0].text}</p>
+                  <h1 className='non mt-3 text-white'> <strong>{slider[1]?.title}</strong></h1>
+                  <p className="non card-text mb-0 py-1" style={{ color: "#838991", fontSize: "18px" }}>{slider[0]?.description}</p>
                   <div className=" non btn-group mt-3" role="group" aria-label="Basic example">
                     <button type="button" className="btn btn-secondary py-0 mx-1" style={{ backgroundColor: "rgb(40,46,61)", color: "#b6bbc0", fontSize: "12px" }}>Trending</button>
                     <button type="button" className="btn btn-secondary py-0 mx-1" style={{ backgroundColor: "rgb(40,46,61)", color: "#b6bbc0", fontSize: "12px" }}>Recommanded</button>
                   </div>
-                  <Link style={{ textDecoration: "none" }} to={
-                    {
-                      pathname: "/swatch",
-                      state: {
-                        Data: slider[1],
-                      },
-                    }
-                  }>
+                  <Link to="/watch" style={{textDecoration:"none"}}>
                     <div className='pt-4'>
-                      <img className='play' src={play} alt="" style={{ maxWidth: "65px", maxHeight: "65px" }} /><span className='px-3' style={{ color: "#ffffff", fontSize: "18px" }}>Play</span>
+                      <img className='play' src={play} alt="" style={{ maxWidth: "65px", maxHeight: "65px" }} /><span className='px-3' style={{ color: "#ffffff", fontSize: "18px" }}
+                        onClick={() => {
+                          setshowData({ ...slider[1] })
+                        }}>Play</span>
                     </div>
                   </Link>
                 </div>
                 <div className="col-12 col-lg-8">
-                  <Link style={{ textDecoration: "none" }} to={
-                    {
-                      pathname: "/swatch",
-                      state: {
-                        Data: slider[1],
-                      },
-                    }
-                  }>
-                    <img style={{ borderRadius: "10px" }} src={slider[1].img} className="d-block w-100" alt="..." />
-                   
+                  <Link to="/watch" style={{textDecoration:"none"}}>
+                    <img style={{ borderRadius: "10px" }} src={slider[1]?.image_url} className="d-block w-100" alt="..."  onClick={() => {
+                          setshowData({ ...slider[1] })
+                        }}/>
+
                   </Link>
                 </div>
               </div>
@@ -118,36 +123,27 @@ function Carosule() {
             <div className="carousel-item">
               <div className="row">
                 <div className="col-4">
-                  <h1 className='non mt-3 text-white'> <strong>{slider[2].title}</strong></h1>
-                  <p className="non card-text mb-0 py-1" style={{ color: "#838991", fontSize: "18px" }}>{slider[0].text}</p>
+                  <h1 className='non mt-3 text-white'> <strong>{slider[2]?.title}</strong></h1>
+                  <p className="non card-text mb-0 py-1" style={{ color: "#838991", fontSize: "18px" }}>{slider[0]?.description}</p>
                   <div className="non btn-group mt-3" role="group" aria-label="Basic example">
                     <button type="button" className="btn btn-secondary py-0 mx-1" style={{ backgroundColor: "rgb(40,46,61)", color: "#b6bbc0", fontSize: "12px" }}>Trending</button>
                     <button type="button" className="btn btn-secondary py-0 mx-1" style={{ backgroundColor: "rgb(40,46,61)", color: "#b6bbc0", fontSize: "12px" }}>Recommanded</button>
                   </div>
-                  <Link style={{ textDecoration: "none" }} to={
-                    {
-                      pathname: "/swatch",
-                      state: {
-                        Data: slider[2],
-                      },
-                    }
-                  }>
+                  <Link to="/watch" style={{textDecoration:"none"}}>
                     <div className='pt-4'>
-                      <img className='play' src={play} alt="" style={{ maxWidth: "65px", maxHeight: "65px" }} /><span className='px-3' style={{ color: "#ffffff", fontSize: "18px" }}>Play</span>
+                      <img className='play' src={play} alt="" style={{ maxWidth: "65px", maxHeight: "65px" }} /><span className='px-3' style={{ color: "#ffffff", fontSize: "18px" }}
+                        onClick={() => {
+                          setshowData({ ...slider[2] })
+                        }}>Play</span>
                     </div>
                   </Link>
 
                 </div>
                 <div className="col-12 col-lg-8">
-                  <Link style={{ textDecoration: "none" }} to={
-                    {
-                      pathname: "/swatch",
-                      state: {
-                        Data: slider[2],
-                      },
-                    }
-                  }>
-                    <img style={{ borderRadius: "10px" }} src={slider[2].img} className="d-block w-100" alt="..." />
+                  <Link to="/watch" style={{textDecoration:"none"}}>
+                    <img style={{ borderRadius: "10px" }} src={slider[2]?.image_url} className="d-block w-100" alt="..."  onClick={() => {
+                          setshowData({ ...slider[2] })
+                        }}/>
                   </Link>
                 </div>
               </div>
@@ -157,37 +153,28 @@ function Carosule() {
             <div className="carousel-item">
               <div className="row">
                 <div className="col-4">
-                  <h1 className='non mt-3 text-white'> <strong>{slider[3].title}</strong></h1>
-                  <p className="non card-text mb-0 py-1" style={{ color: "#838991", fontSize: "18px" }}>{slider[3].text}</p>
+                  <h1 className='non mt-3 text-white'> <strong>{slider[3]?.title}</strong></h1>
+                  <p className="non card-text mb-0 py-1" style={{ color: "#838991", fontSize: "18px" }}>{slider[3]?.description}</p>
                   <div className="non btn-group mt-3" role="group" aria-label="Basic example">
                     <button type="button" className="btn btn-secondary py-0 mx-1" style={{ backgroundColor: "rgb(40,46,61)", color: "#b6bbc0", fontSize: "12px" }}>Trending</button>
                     <button type="button" className="btn btn-secondary py-0 mx-1" style={{ backgroundColor: "rgb(40,46,61)", color: "#b6bbc0", fontSize: "12px" }}>Recommanded</button>
                   </div>
-                  <Link style={{ textDecoration: "none" }} to={
-                    {
-                      pathname: "/swatch",
-                      state: {
-                        Data: slider[3],
-                      },
-                    }
-                  }>
+                  <Link to="/watch" style={{textDecoration:"none"}}>
                     <div className='pt-4'>
 
-                      <img className='play' src={play} alt="" style={{ maxWidth: "65px", maxHeight: "65px" }} /><span className='px-3' style={{ color: "#ffffff", fontSize: "18px" }}>Play</span>
+                      <img className='play' src={play} alt="" style={{ maxWidth: "65px", maxHeight: "65px" }} /><span className='px-3' style={{ color: "#ffffff", fontSize: "18px" }}
+                        onClick={() => {
+                          setshowData({ ...slider[3] })
+                        }}>Play</span>
                     </div>
                   </Link>
                 </div>
                 <div className="col-12 col-lg-8">
-                  <Link style={{ textDecoration: "none" }} to={
-                    {
-                      pathname: "/swatch",
-                      state: {
-                        Data: slider[3],
-                      },
-                    }
-                  }>
-                    <img style={{ borderRadius: "10px" }} src={slider[3].img} className="d-block w-100" alt="..." />
-                   
+                  <Link to="/watch" style={{textDecoration:"none"}}>
+                    <img style={{ borderRadius: "10px" }} src={slider[3]?.image_url} className="d-block w-100" alt="..."  onClick={() => {
+                          setshowData({ ...slider[3] })
+                        }}/>
+
                   </Link>
                 </div>
               </div>
@@ -216,40 +203,40 @@ function Carosule() {
 
   )
 }
-const slider = [{
-  id: 1,
-  img: "https://ap2-prod-images.disco-api.com/2021/12/13/6f716f6a-e48b-4931-94d7-14dfeb1fc05a.jpeg?bf=0&f=jpg&p=true&q=85&w=700",
-  iframe: "https://www.youtube.com/embed/WBqoJVEyJPU",
-  prime: true,
-  newstatus: true,
-  title: "Say Yes To The Dress India",
-  text: "16 Indian brides-to-be hunt for their perfect dress with family & top talent.",
-},
-{
-  id: 2,
-  img: "https://ap2-prod-images.disco-api.com/2020/12/31/63e0eb60-dac7-4ea6-99fd-36127d7d8a84.jpeg?bf=0&f=jpg&p=true&q=85&w=1600",
-  iframe: "https://www.youtube.com/embed/HRMt1bYTaDY",
-  prime: true,
-  newstatus: true,
-  title: "Top Gear ft. Clarkson, Hammond, May",
-  text: "Top Gear irreverently celebrates everything that's brilliant about cars."
-},
-{
-  id: 3,
-  img: "https://ap2-prod-images.disco-api.com/2021/12/03/7dae3d74-6fd6-40af-a442-fc9db50235a0.jpeg?bf=0&f=jpg&p=true&q=85&w=1000",
-  iframe: "https://www.youtube.com/embed/9szKlUPS42I",
-  prime: true,
-  newstatus: true,
-  title: "Family Karma",
-  text: 'The lives of Indian-American friends and their families are chronicled.'
-},
-{
-  id: 4,
-  img: "https://ap2-prod-images.disco-api.com/2020/03/03/0b5e031c-2106-4175-bc35-110de31689c7.jpeg?bf=0&f=jpg&p=true&q=85&w=1600",
-  iframe: "https://www.youtube.com/embed/WKLDQz96VG0",
-  prime: false,
-  newstatus: true,
-  title: "Breaking Point: Indian Submariners",
-  text: "The training it takes to become a submariner is revealed."
-}]
 export default Carosule
+// const slider = [{
+//   id: 1,
+//   img: "https://ap2-prod-images.disco-api.com/2021/12/13/6f716f6a-e48b-4931-94d7-14dfeb1fc05a.jpeg?bf=0&f=jpg&p=true&q=85&w=700",
+//   iframe: "https://www.youtube.com/embed/WBqoJVEyJPU",
+//   prime: true,
+//   newstatus: true,
+//   title: "Say Yes To The Dress India",
+//   text: "16 Indian brides-to-be hunt for their perfect dress with family & top talent.",
+// },
+// {
+//   id: 2,
+//   img: "https://ap2-prod-images.disco-api.com/2020/12/31/63e0eb60-dac7-4ea6-99fd-36127d7d8a84.jpeg?bf=0&f=jpg&p=true&q=85&w=1600",
+//   iframe: "https://www.youtube.com/embed/HRMt1bYTaDY",
+//   prime: true,
+//   newstatus: true,
+//   title: "Top Gear ft. Clarkson, Hammond, May",
+//   text: "Top Gear irreverently celebrates everything that's brilliant about cars."
+// },
+// {
+//   id: 3,
+//   img: "https://ap2-prod-images.disco-api.com/2021/12/03/7dae3d74-6fd6-40af-a442-fc9db50235a0.jpeg?bf=0&f=jpg&p=true&q=85&w=1000",
+//   iframe: "https://www.youtube.com/embed/9szKlUPS42I",
+//   prime: true,
+//   newstatus: true,
+//   title: "Family Karma",
+//   text: 'The lives of Indian-American friends and their families are chronicled.'
+// },
+// {
+//   id: 4,
+//   img: "https://ap2-prod-images.disco-api.com/2020/03/03/0b5e031c-2106-4175-bc35-110de31689c7.jpeg?bf=0&f=jpg&p=true&q=85&w=1600",
+//   iframe: "https://www.youtube.com/embed/WKLDQz96VG0",
+//   prime: false,
+//   newstatus: true,
+//   title: "Breaking Point: Indian Submariners",
+//   text: "The training it takes to become a submariner is revealed."
+// }]

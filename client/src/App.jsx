@@ -15,6 +15,7 @@ import Tamil from './Component/Pages/Home/Tamil'
 import Famous from './Component/Pages/Home/Famous';
 import Sliderwatch from './Component/Pages/Watch/Sliderwatch';
 import { Footer } from './Component/Pages/Footer/Footer';
+import Showwatch from './Component/Pages/Watch/Showwatch';
 //
 import UPIPayment from './Component/Pages/Payment/UPIPayment';
 import Voucher from './Component/Pages/Payment/Voucher';
@@ -54,7 +55,7 @@ function App() {
         </Route>
         <Route path="/swatch" >
           <Navbar></Navbar>
-          <Sliderwatch />
+          <Showwatch />
           <Footer />
         </Route>
         <Route exact path="/payment" >

@@ -7,8 +7,11 @@ import pri from '../Img/pri.png'
 import like1 from '../Img/like1.png'
 import like2 from '../Img/like2.png'
 import { Link } from 'react-router-dom'
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 function Free() {
     const [newly, setNewly] = useState([]);
+    const {setshowData } = useContext(AuthContext);
     const getshowdata = async () => {
         await Dbdata.get("freestream")
             .then(({ data }) => {
@@ -39,17 +42,10 @@ function Free() {
                     {
                         newly.map((e) => (
                             <div className="col col-6  g-3 col-lg-4 col-xl-3" key={e._id} >
-                                <Link to={
-                                    {
-                                        pathname: "/watch",
-                                        state: {
-                                            Data: e,
-                                            route: "freestream"
-
-                                        },
-                                    }
-                                }>
-                                    <div className="card  p-0 m-0" key={e._id} style={{ borderRadius: "10px", border: "none" }}>
+                                <Link to="/watch">
+                                    <div className="card" key={e._id} style={{ borderRadius: "10px" ,border:"none"}} onClick={()=>{
+                                        setshowData({...e})
+                                    }}>
                                         <img style={{ borderRadius: "10px" }} src={e.image_url} classname="img-fluid" alt="" />
                                         {
                                             e.prime ? <img className='top-left' src={pri} alt="" /> : null

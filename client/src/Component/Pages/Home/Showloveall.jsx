@@ -7,6 +7,8 @@ import pri from '../Img/pri.png'
 import like1 from '../Img/like1.png'
 import like2 from '../Img/like2.png'
 import { Link } from 'react-router-dom'
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const Toolbar = styled.header`
 * {box-sizing: border-box}
@@ -132,6 +134,7 @@ h5{
 `
 function Showloveall() {
     const [showlove, setShowlove] = useState([]);
+    const {setshowData } = useContext(AuthContext);
     const getshowdata = async () => {
         await Dbdata.get("showlove")
             .then(({ data }) => {
@@ -164,17 +167,10 @@ function Showloveall() {
                     {
                         showlove.map((e) => (
                             <div className="col col-6  g-3 col-lg-4 col-xl-3" key={e._id} >
-                                <Link to={
-                                    {
-                                        pathname: "/watch",
-                                        state: {
-                                            Data: e,
-                                            route:"showlove"
-
-                                        },
-                                    }
-                                }>
-                                    <div className="card" key={e._id} style={{ borderRadius: "10px" ,border:"none"}} >
+                                <Link to="/watch">
+                                    <div className="card" key={e._id} style={{ borderRadius: "10px" ,border:"none"}} onClick={()=>{
+                                        setshowData({...e})
+                                    }}>
                                         <img style={{ borderRadius: "10px" }} src={e.image_url} classname="img-fluid" alt="" />
                                         {
                                             e.prime ? <img className='top-left' src={pri} alt="" /> : null

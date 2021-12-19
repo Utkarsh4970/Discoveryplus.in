@@ -14,7 +14,7 @@ const styles = {
    
 }
 function PaymentMethod() {
-    localStorage.clear("price")
+    localStorage.setItem("price",399)
     const history = useHistory()
     return (
         

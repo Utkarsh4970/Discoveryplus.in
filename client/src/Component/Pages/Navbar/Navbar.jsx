@@ -8,10 +8,13 @@ import { useContext } from "react"
 import { AuthContext } from "../../context/AuthContext"
 import { useState, useCallback } from 'react'
 function Navbar() {
+  const {setshowData,showdata } = useContext(AuthContext);
   //signin
   const {token, handleLogout, otpSend} = useContext(AuthContext);
   const handleClick = ()=>{
       handleLogout()
+      localStorage.setItem("email","")
+      localStorage.setItem("mob","")
   }
   //
   const [showlove, setShowlove] = useState([]);
@@ -117,14 +120,9 @@ function Navbar() {
                   {
                     showlove?.map((el, i) =>
 
-                      <Link style={{ textDecoration: "none", color: "white" }} to={
-                        {
-                          pathname: "/watch",
-                          state: {
-                            Data: el,
-                          },
-                        }
-                      }><p className='px-2 pt-1 col10'><span><img className='pe-2' src={el.image_url} alt="" style={{ maxWidht: "36px", maxHeight: "36px", borderRadius: "5px" }} /></span>{el.title}</p></Link>
+                      <Link style={{ textDecoration: "none", color: "white" }} to="/watch"><p className='px-2 pt-1 col10' onClick={()=>{
+                        setshowData({...el})
+                    }}><span><img className='pe-2' src={el.image_url} alt="" style={{ maxWidht: "36px", maxHeight: "36px", borderRadius: "5px" }} /></span>{el.title}</p></Link>
 
                     )
                   }
@@ -141,7 +139,8 @@ function Navbar() {
             <ul className="navbar-nav">
               <li className="nav-item px-3">
               {
-                !otpSend?<Link to="/signin" > <button className='btn-primary px-2' style={{ borderRadius: "5px" }}>Sign In</button></Link>: <button className='btn-primary px-2' style={{ borderRadius: "5px" }} onClick={handleClick}>My Account</button>
+                !otpSend?<Link to="/signin" > <button className='btn-primary px-2' style={{ borderRadius: "5px" }}>Sign In</button></Link>: <button className='btn-primary px-2' style={{ borderRadius: "5px" }} onClick={
+                  handleClick}>My Account</button>
 
             }
                

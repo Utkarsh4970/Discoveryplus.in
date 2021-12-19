@@ -7,6 +7,8 @@ import pri from '../Img/pri.png'
 import like1 from '../Img/like1.png'
 import like2 from '../Img/like2.png'
 import { Link } from 'react-router-dom'
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 const Toolbar = styled.header`
 * {box-sizing: border-box}
 .card {
@@ -157,23 +159,17 @@ function Showlove() {
         , fontSize: "16px",
         textDecoration: "none"
     }
+    const {setshowData } = useContext(AuthContext);
     return (
         <Toolbar>
             <div style={{ padding: "4%", paddingTop: "1%", paddingBottom: "1%" }}>
                 <h1 className='pt-3' style={{ fontSize: "20px", color: "white" }}>Shows You Love<Link to="/showall" className='float-end pt-0 hov' style={style}>View All</Link></h1>
                 <div className="row">
                     <div className="col col-6  g-3 col-lg-4 col-xl-3" key={showlove[0]?._id} >
-                        <Link to={
-                            {
-                                pathname: "/watch",
-                                state: {
-                                    Data: showlove[0],
-                                    route: "showlove"
-
-                                },
-                            }
-                        }>
-                            <div className="card" key={showlove[0]?._id} style={{ borderRadius: "10px", border: "none" }}>
+                    <Link to="/watch">
+                                    <div className="card" key={showlove[0]?._id} style={{ borderRadius: "10px" ,border:"none"}} onClick={()=>{
+                                        setshowData({...showlove[0]})
+                                    }}>
                                 <img style={{ borderRadius: "10px" }} src={showlove[0]?.image_url} classname="img-fluid" alt="" />
                                 {
                                     showlove[0]?.prime ? <img className='top-left' src={pri} alt="" /> : null
@@ -203,17 +199,10 @@ function Showlove() {
                         </Link>
                     </div>
                     <div className="col col-6  g-3 col-lg-4 col-xl-3" key={showlove[1]?._id} >
-                        <Link to={
-                            {
-                                pathname: "/watch",
-                                state: {
-                                    Data: showlove[1],
-                                    route: "showlove"
-
-                                },
-                            }
-                        }>
-                            <div className="card" key={showlove[1]?._id} style={{ borderRadius: "10px", border: "none" }}>
+                    <Link to="/watch">
+                                    <div className="card" key={showlove[1]?._id} style={{ borderRadius: "10px" ,border:"none"}} onClick={()=>{
+                                        setshowData({...showlove[1]})
+                                    }}>
                                 <img style={{ borderRadius: "10px" }} src={showlove[1]?.image_url} classname="img-fluid" alt="" />
                                 {
                                     showlove[1]?.prime ? <img className='top-left' src={pri} alt="" /> : null
@@ -243,17 +232,10 @@ function Showlove() {
                         </Link>
                     </div>
                     <div className="col col-6  g-3 col-lg-4 col-xl-3" key={showlove[2]?._id} >
-                        <Link to={
-                            {
-                                pathname: "/watch",
-                                state: {
-                                    Data: showlove[2],
-                                    route: "showlove"
-
-                                },
-                            }
-                        }>
-                            <div className="card" key={showlove[2]?._id} style={{ borderRadius: "10px", border: "none" }}>
+                    <Link to="/watch">
+                                    <div className="card" key={showlove[2]?._id} style={{ borderRadius: "10px" ,border:"none"}} onClick={()=>{
+                                        setshowData({...showlove[2]})
+                                    }}>
 
                                 <img style={{ borderRadius: "10px" }} src={showlove[2]?.image_url} classname="img-fluid" alt="" />
                                 {
@@ -284,18 +266,10 @@ function Showlove() {
                         </Link>
                     </div>
                     <div className="col col-6  g-3 col-lg-4 col-xl-3" key={showlove[3]?._id} >
-                    <Link to={
-                                {
-                                    pathname: "/watch",
-                                    state: {
-                                        Data: showlove[3],
-                                        route: "showlove"
-
-                                    },
-                                }
-                            }>
-                        <div className="card" key={showlove[3]?._id} style={{ borderRadius: "10px", border: "none" }}>
-                           
+                    <Link to="/watch">
+                                    <div className="card" key={showlove[3]?._id} style={{ borderRadius: "10px" ,border:"none"}} onClick={()=>{
+                                        setshowData({...showlove[3]})
+                                    }}>
                                 <img style={{ borderRadius: "10px" }} src={showlove[3]?.image_url} classname="img-fluid" alt="" />
                                 {
                                     showlove[3]?.prime ? <img className='top-left' src={pri} alt="" /> : null

@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Redirect } from "react-router";
+import Dbdata from "../../Utils/request"
 import GoogleLogin from "react-google-login";
 const SignInButton = styled.button`
     width:100%
@@ -40,16 +41,22 @@ const SignInButton = styled.button`
 `
 
 export const SignOther = () => {
-    const {handleToken,token} = useContext(AuthContext);
-  const responseGoogle = (response) => {
-    // console.log( response.tokenObj.access_token);
-    alert(`Welcome ${ response.profileObj.name}`)
-    handleToken(response.tokenObj.access_token)
-    
-  };
-  if(token){
-      return <Redirect to="/"></Redirect>
-  }
+    const { handlemail, otpSend } = useContext(AuthContext);
+    const responseGoogle = (response) => {
+        // console.log( response.tokenObj.access_token);
+        alert(`Welcome ${response.profileObj.name}`)
+       
+        
+        localStorage.setItem("email",response.profileObj.email)
+        handlemail()
+    //    Dbdata.post('/user', {
+    //         user: response.profileObj.email
+    //     })
+
+    };
+    if (otpSend) {
+        return <Redirect to="/"></Redirect>
+    }
     return (
         <div className="signOther-page">
             <Wrapper>
