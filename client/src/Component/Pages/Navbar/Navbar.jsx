@@ -90,7 +90,7 @@ function Navbar() {
                 <a className="nav-link hov">Mindblown</a>
               </li>
               <li className="nav-item px-1">
-                <a className="nav-link hov">Premium</a>
+                <Link to="/payment" style={{textDecoration:'none'}} className="nav-link hov">Premium</Link>
               </li>
             </ul>
           </div>

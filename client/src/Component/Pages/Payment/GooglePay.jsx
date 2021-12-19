@@ -7,7 +7,7 @@ import axios from 'axios';
 function GooglePay() {
   const { handleprime, Primemember } = useContext(AuthContext)
   if (Primemember) {
-    return <Redirect to="/swatch"></Redirect>
+    return <Redirect to="/watch"></Redirect>
   }
 
  
@@ -53,7 +53,7 @@ function GooglePay() {
         onLoadPaymentData={paymentRequest => {
           // console.log('load payment data', paymentRequest.paymentMethodData.tokenizationData.token);
           if (paymentRequest.paymentMethodData.tokenizationData.token.length > 0) {
-            console.log(localStorage.getItem("email") || localStorage.getItem("mob"));
+            // console.log(localStorage.getItem("email") || localStorage.getItem("mob"));
            
             handleprime()
            

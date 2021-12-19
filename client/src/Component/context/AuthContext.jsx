@@ -41,7 +41,6 @@ export const AuthContextProvider = ({children}) =>{
     }
     const handleprime=async()=>{
       setPrimeMember(true)
-    
       await Dbdata.post("/user", {
         user:localStorage.getItem("mob")||localStorage.getItem("email"),
         prime_status:true

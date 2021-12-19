@@ -28,10 +28,11 @@ export const Sighin = ()=>{
 
       }).then((res)=>{
         console.log(res.data);
-        alert(res.data.otp)
+         alert(res.data.otp)
         localStorage.setItem("mob",state.phone)
         const hash = res.data.hash;
         handleHash(hash);
+
       
       })
     

@@ -15,7 +15,7 @@ function CreaditCard() {
     const { handleprime, Primemember } = useContext(AuthContext)
     console.log(Primemember);
     if (Primemember) {
-        return <Redirect to="/swatch"></Redirect>
+        return <Redirect to="/watch"></Redirect>
     }
     return (
         <Toolbar>

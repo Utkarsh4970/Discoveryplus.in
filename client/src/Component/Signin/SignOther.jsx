@@ -41,12 +41,10 @@ const SignInButton = styled.button`
 `
 
 export const SignOther = () => {
-    const { handlemail, otpSend } = useContext(AuthContext);
+    const {handleprime, handlemail, otpSend } = useContext(AuthContext);
     const responseGoogle = (response) => {
         // console.log( response.tokenObj.access_token);
         alert(`Welcome ${response.profileObj.name}`)
-       
-        
         localStorage.setItem("email",response.profileObj.email)
         handlemail()
     //    Dbdata.post('/user', {
@@ -54,8 +52,8 @@ export const SignOther = () => {
     //     })
 
     };
-    if (otpSend) {
-        return <Redirect to="/"></Redirect>
+    if (localStorage.getItem("email")!="") {
+        return <Redirect to="/swatch"></Redirect>
     }
     return (
         <div className="signOther-page">

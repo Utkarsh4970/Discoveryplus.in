@@ -1,8 +1,10 @@
 import React from 'react'
 import {Toolbar} from "./Payment"
 import SelectedPlan from './SelectedPlan'
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import {useHistory} from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
+import { useContext } from "react";
 
 import { Wrapper } from './Wrapper';
 const styles = {
@@ -13,9 +15,14 @@ const styles = {
     },
    
 }
+
 function PaymentMethod() {
+    const { handlemail, otpSend,showdata,setshowData } = useContext(AuthContext);
     localStorage.setItem("price",399)
-    const history = useHistory()
+    if(!otpSend){
+        return <Redirect to="/signin"></Redirect>
+    }
+   
     return (
         
         <Toolbar>
