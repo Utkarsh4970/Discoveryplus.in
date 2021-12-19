@@ -13,7 +13,6 @@ import Best from './Component/Pages/Home/Best';
 import Hindi from './Component/Pages/Home/Hindi'
 import Tamil from './Component/Pages/Home/Tamil'
 import Famous from './Component/Pages/Home/Famous';
-import Sliderwatch from './Component/Pages/Watch/Sliderwatch';
 import { Footer } from './Component/Pages/Footer/Footer';
 import Showwatch from './Component/Pages/Watch/Showwatch';
 //

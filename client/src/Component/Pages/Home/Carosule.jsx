@@ -204,39 +204,4 @@ function Carosule() {
   )
 }
 export default Carosule
-// const slider = [{
-//   id: 1,
-//   img: "https://ap2-prod-images.disco-api.com/2021/12/13/6f716f6a-e48b-4931-94d7-14dfeb1fc05a.jpeg?bf=0&f=jpg&p=true&q=85&w=700",
-//   iframe: "https://www.youtube.com/embed/WBqoJVEyJPU",
-//   prime: true,
-//   newstatus: true,
-//   title: "Say Yes To The Dress India",
-//   text: "16 Indian brides-to-be hunt for their perfect dress with family & top talent.",
-// },
-// {
-//   id: 2,
-//   img: "https://ap2-prod-images.disco-api.com/2020/12/31/63e0eb60-dac7-4ea6-99fd-36127d7d8a84.jpeg?bf=0&f=jpg&p=true&q=85&w=1600",
-//   iframe: "https://www.youtube.com/embed/HRMt1bYTaDY",
-//   prime: true,
-//   newstatus: true,
-//   title: "Top Gear ft. Clarkson, Hammond, May",
-//   text: "Top Gear irreverently celebrates everything that's brilliant about cars."
-// },
-// {
-//   id: 3,
-//   img: "https://ap2-prod-images.disco-api.com/2021/12/03/7dae3d74-6fd6-40af-a442-fc9db50235a0.jpeg?bf=0&f=jpg&p=true&q=85&w=1000",
-//   iframe: "https://www.youtube.com/embed/9szKlUPS42I",
-//   prime: true,
-//   newstatus: true,
-//   title: "Family Karma",
-//   text: 'The lives of Indian-American friends and their families are chronicled.'
-// },
-// {
-//   id: 4,
-//   img: "https://ap2-prod-images.disco-api.com/2020/03/03/0b5e031c-2106-4175-bc35-110de31689c7.jpeg?bf=0&f=jpg&p=true&q=85&w=1600",
-//   iframe: "https://www.youtube.com/embed/WKLDQz96VG0",
-//   prime: false,
-//   newstatus: true,
-//   title: "Breaking Point: Indian Submariners",
-//   text: "The training it takes to become a submariner is revealed."
-// }]
+
