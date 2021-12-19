@@ -3,7 +3,7 @@
 
 
 
-![Logo](https://www.discoveryplus.in/129c5de772422db12a69e397768bd8ec.png)
+![Logo]("https://www.discoveryplus.in/129c5de772422db12a69e397768bd8ec.png")
 
 # Clone of Discoveryplus.in
 
