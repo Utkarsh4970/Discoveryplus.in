@@ -33,13 +33,13 @@ function CreaditCard() {
                             <div className=''>
                                 <form action="">
                                     <p className='text-white h5'>Checkout</p>
-                                    <p className='methods2'>CARD NUMBER</p>
+                                    <p className='methods2' style={{marginTop:8}}>CARD NUMBER</p>
                                     <input className='voucherInput voucherInput2' name="cardNumber" type="text" placeholder='1234 5678 9012 3456' required minLength={16} maxLength={16} />
-                                    <p className='methods2'>EXPIRY DATE</p>
+                                    <p className='methods2'style={{marginTop:8}}>EXPIRY DATE</p>
                                     <input className='voucherInput voucherInput2' name="expiry" type="text" placeholder='MM/YY' required minLength={4} maxLength={5} />
-                                    <p className='methods2'>CVC/CVV</p>
+                                    <p className='methods2'style={{marginTop:8}}>CVC/CVV</p>
                                     <input className='voucherInput voucherInput2' name="cvv" type="text" placeholder='123' required minLength={3} maxLength={3} />
-                                    <p className='methods2'>CARD HOLDER NAME</p>
+                                    <p className='methods2'style={{marginTop:8}}>CARD HOLDER NAME</p>
                                     <input className='voucherInput voucherInput2' name="cardholdername" type="text" placeholder='J. Smith' required minLength={1} />
                                 </form>
                                 <Button className="marlef" style={{ marginTop: 18, width: "96%", marginBottom: 20 }} disabled={disable} className='proceedToUpi' variant="contained" onClick={() => {
