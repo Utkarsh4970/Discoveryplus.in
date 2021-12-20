@@ -6,10 +6,12 @@ export const AuthContextProvider = ({children}) =>{
     const [token,setToken] = useState("");
     const [otpSend, setOtpSend] = useState(false);
     const [Primemember, setPrimeMember] = useState(false);
+    const [Login, setLogin] = useState(false);
     const [showdata,setshowData] = useState("");
 
     const handleLogout = ()=>{
         setToken("")
+        setLogin(false)
         setOtpSend(false)
     }
 
@@ -24,8 +26,7 @@ export const AuthContextProvider = ({children}) =>{
         setState({...state,[input]:e.target.value});
       }
     
-      const handleHash = (newhash)=>{
-        setState({...state, hash:newhash});
+      const handleotp = ()=>{
         setOtpSend(true);
       }
 
@@ -49,13 +50,10 @@ export const AuthContextProvider = ({children}) =>{
       
     }
     const handlemail = ()=>{
-      setOtpSend(true);
+      setLogin(true);
     }
-    console.log(showdata);
-      //const {phone,hash,otp} = state;
-      //const value = {phone,hash,otp}
     return (
-        <AuthContext.Provider value = {{token,handleToken,handleLogout,state,otpSend,handleState,handleHash,Primemember, handleprime,handlemail,showdata,setshowData}}>
+        <AuthContext.Provider value = {{token,handleToken,handleLogout,state,otpSend,handleState,handleotp,Primemember, handleprime,handlemail,showdata,setshowData,Login,setLogin}}>
             {children}
         </AuthContext.Provider>
     )

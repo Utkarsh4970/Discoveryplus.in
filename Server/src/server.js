@@ -14,12 +14,12 @@ const port = process.env.PORT || 3535;
 const accountSid = process.env.ACCOUNT_SID;
 const authToken = process.env.AUTH_TOKEN;
 const smsKey = process.env.SMS_SECRET_KEY;
-const client = require('twilio')(accountSid,authToken);
+const client = require('twilio')(accountSid  ,authToken);
 //const JWT_AUTH_TOKEN = process.env.JWT_AUTH_TOKEN;
 const cors = require('cors');
 //let refreshTokens = [];
 app.use(cookieParser());
-app.use(cors({origin:'http://localhost:3000',credentials:true}))
+app.use(cors({origin:'https://discoveryplusclone-vishal-patil.vercel.app'}))
 /******************* Send OTP **************/
 app.post('/sendOTP',(req,res)=>{
     const phone = req.body.phone;

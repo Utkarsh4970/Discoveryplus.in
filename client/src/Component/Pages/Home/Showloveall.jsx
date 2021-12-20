@@ -147,7 +147,7 @@ function Showloveall() {
     useEffect(() => {
         getshowdata()
     }, [])
-    console.log(showlove);
+    // console.log(showlove);
 
 
     const handlecolor = (id) => {

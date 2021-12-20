@@ -47,9 +47,7 @@ export const SignOther = () => {
         alert(`Welcome ${response.profileObj.name}`)
         localStorage.setItem("email",response.profileObj.email)
         handlemail()
-    //    Dbdata.post('/user', {
-    //         user: response.profileObj.email
-    //     })
+   
 
     };
     if (localStorage.getItem("email")!="") {
@@ -65,11 +63,12 @@ export const SignOther = () => {
                         <SignInButton >
                             <div >
                                 <GoogleLogin
-                                    clientId="154743955779-puie7227q9rv09vk3ncbuorg2uq9rteu.apps.googleusercontent.com"
+                                    clientId="196704662244-8pd53bjj7rvboqhdjjslk8fnta5d1u9j.apps.googleusercontent.com"
                                     buttonText="Sign up with google"
                                     onSuccess={responseGoogle}
                                     onFailure={responseGoogle}
                                     cookiePolicy={"single_host_origin"}
+                                    redirectUri="https://discoveryplusclone-vishal-patil.vercel.app/signinOther"
                                 />
 
                             </div>

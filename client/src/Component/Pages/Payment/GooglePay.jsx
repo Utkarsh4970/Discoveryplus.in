@@ -12,7 +12,7 @@ function GooglePay() {
 
  
 
-  console.log(Primemember);
+  // console.log(Primemember);
   return (
     <div>
       <GooglePayButton className='googlePayButton'
