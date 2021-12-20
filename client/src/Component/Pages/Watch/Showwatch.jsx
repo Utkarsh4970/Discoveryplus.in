@@ -11,7 +11,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Redirect } from 'react-router-dom'
 import Dbdata from '../../../Utils/request'
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 const Toolbar = styled.header`
 .hov:hover{
     color:white !important
@@ -24,40 +24,37 @@ const Toolbar = styled.header`
 function Showwatch() {
     const [showuser, setShowuser] = useState(false);
     const getshowdata = async () => {
-        await Dbdata.get(`user/${localStorage.getItem("mob")||localStorage.getItem("email")}`)
+        await Dbdata.get(`user/${localStorage.getItem("mob") || localStorage.getItem("email")}`)
             .then(({ data }) => {
-        
+
                 setShowuser(data.user[0]?.prime_status)
                 return;
-         
+
                 // console.log(data);
                 // console.log(data.user[0],"ans");
-               
+
             })
 
     }
-   
+
     useEffect(() => {
         getshowdata()
     }, [])
-    const { handlemail, otpSend,showdata,setshowData } = useContext(AuthContext);
-    if(localStorage.getItem("email")=="" &&  localStorage.getItem("mob")==""){
+    const { handlemail, otpSend, showdata, setshowData } = useContext(AuthContext);
+    if (localStorage.getItem("email") == "" && localStorage.getItem("mob") == "") {
         return <Redirect to="/signin"></Redirect>
-       }
+    }
        if(showdata==""){
         return <Redirect to="/"></Redirect>
-       }
-       if(localStorage.getItem("email")=="" &&  localStorage.getItem("mob")==""){
-        return <Redirect to="/signin"></Redirect>
        }
     return (
         <Toolbar>
             <div style={{ paddingTop: "10px" }}>
                 <div className="card" style={{ maxWidth: "1100px", margin: "auto", backgroundColor: "rgb(26,28,33)", borderRadius: "1%", border: "none" }}>
-                <Link style={{ textDecoration: "none" }} to=""> {
-                    !showdata.prime || showuser ?<iframe className="card-img-top fluid-image"  src="https://www.youtube.com/embed/WKLDQz96VG0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style={{ borderRadius: "2%",height:"600px" }}></iframe>: <Link to="/payment"> <img style={{ borderRadius: "2%" }} src={primium} className="card-img-top" alt="..." /></Link>
-                }
-                </Link>
+                    <Link style={{ textDecoration: "none" }} to=""> {
+                        !showdata.prime || showuser ? <iframe className="card-img-top fluid-image" src="https://www.youtube.com/embed/WKLDQz96VG0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style={{ borderRadius: "2%", height: "600px" }}></iframe> : <Link to="/payment"> <img style={{ borderRadius: "2%" }} src={primium} className="card-img-top" alt="..." /></Link>
+                    }
+                    </Link>
                     <div className="card-body" style={{ color: "white" }}>
                         <div className="row">
                             <div className="col-12 col-md-7 mb-3">

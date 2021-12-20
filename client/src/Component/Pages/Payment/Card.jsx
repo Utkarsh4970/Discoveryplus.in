@@ -10,7 +10,6 @@ const CardWrapper = styled.div`
         width: 100%;
         z-index: -1;
     }
-
     & > .sighin-logo {
         & >img{
             width: 190px;
@@ -19,21 +18,18 @@ const CardWrapper = styled.div`
             margin-bottom: 35px;
         }
     }
-
     & > .sighin-content{
         height: 100%;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-
         & > .content-template{
             width: 650px;
             margin: auto;
             padding: 5px 15px 10px 15px;
             background:transparent;
             height: 600px;
-
             & > .login-container{
                 color: white;
                 margin: 0 80.5px;

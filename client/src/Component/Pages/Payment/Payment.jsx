@@ -127,7 +127,7 @@ export const Toolbar = styled.header`
         display: flex;
         color: #FFFFFF;
         margin-left: 20px;
-        margin-top: -27px;
+        margin-top: -22px;
     }
     .thirdline{
         width: 99%;

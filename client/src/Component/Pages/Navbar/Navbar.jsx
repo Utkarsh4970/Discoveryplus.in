@@ -10,11 +10,13 @@ import { useState, useCallback } from 'react'
 function Navbar() {
   const {setshowData,showdata } = useContext(AuthContext);
   //signin
-  const {token, handleLogout, otpSend} = useContext(AuthContext);
+  const {token, handleLogout, otpSend,Login} = useContext(AuthContext);
   const handleClick = ()=>{
       handleLogout()
       localStorage.setItem("email","")
       localStorage.setItem("mob","")
+      localStorage.setItem("otp","")
+      
   }
   //
   const [showlove, setShowlove] = useState([]);
@@ -139,7 +141,7 @@ function Navbar() {
             <ul className="navbar-nav">
               <li className="nav-item px-3">
               {
-                !otpSend?<Link to="/signin" > <button className='btn-primary px-2' style={{ borderRadius: "5px" }}>Sign In</button></Link>: <button className='btn-primary px-2' style={{ borderRadius: "5px" }} onClick={
+                !Login?<Link to="/signin" > <button className='btn-primary px-2' style={{ borderRadius: "5px" }}>Sign In</button></Link>: <button className='btn-primary px-2' style={{ borderRadius: "5px" }} onClick={
                   handleClick}>My Account</button>
 
             }

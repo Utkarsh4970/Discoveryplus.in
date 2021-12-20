@@ -89,7 +89,7 @@ function PaymentMethod() {
                                     <path d="M4.75 10.2917H7.125" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                     <path d="M7.125 10.2917C12.403 10.2917 12.403 2.375 7.125 2.375" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
-                                <span className='peryear'>399/year</span>
+                                <span className='peryear'>399.00/year</span>
                             </div>
                             <div className='thirdline'></div>
                             <p className='method change'>Change</p>

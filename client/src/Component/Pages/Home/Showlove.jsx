@@ -144,7 +144,7 @@ function Showlove() {
     useEffect(() => {
         getshowdata()
     }, [])
-    console.log(showlove);
+    // console.log(showlove);
     const handlecolor = (id) => {
         const updated = showlove.filter((e) => {
             if (e._id === id) {

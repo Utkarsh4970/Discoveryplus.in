@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 const Mockdata=axios.create({
-    baseURL:"http://localhost:3535"
+    baseURL:"https://calm-chamber-32471.herokuapp.com"
 })
 
 export default Mockdata
