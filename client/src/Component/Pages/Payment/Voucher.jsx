@@ -11,13 +11,17 @@ function Voucher() {
             let price = Math.floor(399 * 30) / 100
             price = (price.toFixed(2))
             setPrice(399 - price)
-            localStorage.setItem("price", price)
+            let rupees = (399*30)/100
+            rupees = 399-rupees
+            localStorage.setItem("price", rupees)
         } else
             if (e.target.value === 'masai20' || e.target.value === 'MASAI20') {
                 let price = Math.floor(399 * 20) / 100
                 price = (price.toFixed(2))
                 setPrice(399 - price)
-                localStorage.setItem("price", price)
+                let rupees = (399*20)/100
+                rupees = 399-rupees
+                localStorage.setItem("price", rupees)
             }
 
             else {
